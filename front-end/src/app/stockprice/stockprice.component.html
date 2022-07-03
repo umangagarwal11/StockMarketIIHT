@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="text-align: center;">
+
+
+
+  <div>
+    <label>File Upload</label>
+    <br>
+    <input type="file" class="form-control" (change)="onFileChange($event)" accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+  </div>
+
+  <div *ngIf="isUploaded" class="card-body">
+
+      <p class="card-text">File Upload Successful!</p>
+
+</div>
+<br>
+  <div class="container">
+    <table class="table table-bordered">
+      <thead class="thead-inverse thead-dark">
+        <tr>
+          <th>Company Id</th>
+          <th>Stock Exchange Name</th>
+          <th>Price</th>
+          <th>Date</th>
+          <th>Time</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of sps">
+          <td>{{ s.companyCode }}</td>
+          <td>{{ s.stockExchangeName }}</td>
+          <td>{{ s.price }}</td>
+          <td>{{ s.date }}</td>
+          <td>{{ s.time }}</td>
+
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <button type="button" class="btn btn-link"><a [routerLink]="['/nav-bar']" routerLinkActive="router-link-active" >Back</a></button>
+    <router-outlet></router-outlet>
+

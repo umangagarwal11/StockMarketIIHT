@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="text-align: center;">
+  <h2>Add Sector</h2>
+  <div>
+  <form #sForm=ngForm (ngSubmit)="onSubmit()">
+    <label>Sector Id</label>
+    <input type="text" name="id" [(ngModel)]="formData.sectorId" required>
+    <br><br>
+    <label>Sector Name</label>
+    <select name="name" [(ngModel)]="formData.sectorName" required>
+      <option value="Finance">Finance</option>
+      <option value="Health">Health</option>
+      <option value="Software Solutions">Software Solutions</option>
+      <option value="Education">Education</option></select>
+    <br><br>
+    <label>Description</label>
+    <input type="text" name="desc" [(ngModel)]="formData.sectorDescription" required>
+    <br><br>
+    <input type="submit" value="Submit">
+    <br><br>
+    <button type="submit" (click)="onEdit(formData)">Edit</button>
+  </form>
+</div>
+<br>
+<div class="container">
+  <table class="table table-bordered">
+    <thead class="thead-inverse thead-dark">
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Delete</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of sectors">
+        <td>{{ s.sectorId }}</td>
+        <td>{{ s.sectorName }}</td>
+        <td>{{ s.sectorDescription }}</td>
+        <td><button (click)="onDelete(s.sectorId)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <button type="button" class="btn btn-link" ><a [routerLink]="['/nav-bar']" routerLinkActive="router-link-active" >Back</a></button>
+  <router-outlet></router-outlet>
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="text-align: center;">
+  <h2>Add IPO</h2>
+  <div>
+  <form #iForm=ngForm (ngSubmit)="onSubmit()">
+    <label>Id</label>
+    <input type="text" name="id" [(ngModel)]="formData.id" required>
+    <br><br>
+    <label>Company</label>
+    <select name="name" [(ngModel)]="formData.companyName" >
+      <option value="None">Select</option>
+      <option *ngFor="let s of comp" value="{{s.companyName}}">{{s.companyName}}</option>
+      </select>
+    <br><br>
+    <label> Stock Exchanges</label>
+    <select name="stockexName" [(ngModel)]="formData.stockExchange">
+      <option value="None">Select</option>
+      <option *ngFor="let s of stockex" value="{{s.name}}">{{s.name}}</option>
+
+    </select>
+    <br><br>
+    <label>Total Shares</label>
+    <input type="text" name="share" [(ngModel)]="formData.totalShares" required>
+    <br><br>
+    <label>Open Date</label>
+    <input type="date" name="date" [(ngModel)]="formData.openDate" required>
+    <br><br>
+    <label>Open Time</label>
+    <input type="text" name="time" [(ngModel)]="formData.openTime" required>
+    <br><br>
+    <label>Price</label>
+    <input type="text" name="price" [(ngModel)]="formData.price" required>
+    <br><br>
+    <label>Remarks</label>
+    <input type="text" name="remarks" [(ngModel)]="formData.remarks" required>
+    <br><br>
+    <input type="submit" value="Submit">
+    <br><br>
+    <button type="submit" (click)="onEdit(formData)">Edit</button>
+  </form>
+</div>
+<br>
+<div class="container">
+  <table class="table table-bordered">
+    <thead class="thead-inverse thead-dark">
+      <tr>
+        <th>Id</th>
+        <th>Company Name</th>
+        <th>Stock Exchange</th>
+        <th>Total Shares</th>
+        <th>Open Date</th>
+        <th>Open Time</th>
+        <th>Price</th>
+        <th>Remarks</th>
+        <th>Delete</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of ipos">
+        <td>{{ s.id }}</td>
+        <td>{{ s.companyName }}</td>
+        <td>{{ s.stockExchange }}</td>
+        <td>{{ s.totalShares }}</td>
+        <td>{{ s.openDate }}</td>
+        <td>{{ s.openTime }}</td>
+        <td>{{ s.price }}</td>
+        <td>{{ s.remarks }}</td>
+        <td><button (click)="onDelete(s.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <button type="button" class="btn btn-link"><a [routerLink]="['/nav-bar']" routerLinkActive="router-link-active" >Back</a></button>
+  <router-outlet></router-outlet>
+
+

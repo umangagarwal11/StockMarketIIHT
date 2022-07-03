@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="text-align: center;">
+  <h2>Add Company</h2>
+  <div>
+  <form #cForm=ngForm (ngSubmit)="onSubmit()">
+    <label>Company Id</label>
+    <input type="text" name="id" [(ngModel)]="formData.companyId" required>
+    <br><br>
+    <label>Company Name</label>
+    <input type="text" name="name" [(ngModel)]="formData.companyName" required>
+    <br><br>
+    <label>CEO</label>
+    <input type="text" name="ceo" [(ngModel)]="formData.ceo" required>
+    <br><br>
+    <label>Turnover</label>
+    <input type="text" name="turnover" [(ngModel)]="formData.turnover" required>
+    <br><br>
+    <label> Stock Exchanges</label>
+    <select name="stockexName" [(ngModel)]="formData.listedInStockExchanges">
+      <option value="None">Select</option>
+      <option *ngFor="let s of stockex" value="{{s.name}}">{{s.name}}</option>
+
+    </select>
+    <br><br>
+    <label>Board of Directors</label>
+    <input type="text" name="bod" [(ngModel)]="formData.boardOfDirectors" required>
+    <br><br>
+    <label>Sector Name</label>
+    <select name="sector" [(ngModel)]="formData.sector">
+      <option value="None">Select</option>
+      <option *ngFor="let s of sectors" value="{{s.sectorName}}">{{s.sectorName}}</option>
+    </select>
+    <br><br>
+    <label>Company description</label>
+    <input type="text" name="desc" [(ngModel)]="formData.companyDescription" required>
+    <br><br>
+    <input type="submit" value="Submit">
+    <br><br>
+    <button type="submit" (click)="onEdit(formData)">Edit</button>
+  </form>
+</div>
+<br>
+<div class="container">
+  <table class="table table-bordered">
+    <thead class="thead-inverse thead-dark">
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>CEO</th>
+        <th>Turnover</th>
+        <th>Stock Exchanges</th>
+        <th>Board of Directors</th>
+        <th>sector</th>
+        <th>Description</th>
+        <th>Delete</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of companies">
+        <td>{{ s.companyId }}</td>
+        <td>{{ s.companyName }}</td>
+        <td>{{ s.ceo }}</td>
+        <td>{{ s.turnover }}</td>
+        <td>{{s.listedInStockExchanges}}</td>
+        <td>{{ s.boardOfDirectors }}</td>
+        <td>{{ s.sector }}</td>
+        <td>{{ s.companyDescription }}</td>
+        <td><button (click)="onDelete(s.companyId)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <button type="button" class="btn btn-link"><a [routerLink]="['/nav-bar']" routerLinkActive="router-link-active" >Back</a></button>
+  <router-outlet></router-outlet>
+
+

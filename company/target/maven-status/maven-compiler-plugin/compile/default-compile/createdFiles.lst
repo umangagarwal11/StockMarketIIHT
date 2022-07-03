@@ -1,0 +1,5 @@
+com\stockmarket\company\CompanyService.class
+com\stockmarket\company\Company.class
+com\stockmarket\company\CompanyRepository.class
+com\stockmarket\company\CompanyController.class
+com\stockmarket\company\CompanyApplication.class

@@ -1,0 +1,5 @@
+com\stockmarket\stockexchange\StockExchangeRepository.class
+com\stockmarket\stockexchange\StockExchange.class
+com\stockmarket\stockexchange\StockExchangeController.class
+com\stockmarket\stockexchange\StockExchangeApplication.class
+com\stockmarket\stockexchange\StockExchangeService.class
